@@ -4,9 +4,10 @@ MAINTAINER "Rene Gielen" <rgielen@apache.org>
 RUN apt-get update && apt-get upgrade -y \
       && apt-get install -y --no-install-recommends \
            apache2 \
-           php7.0 \
-           php-pear \
-           libapache2-mod-php7.0 \
+           php5 \
+           php5-cli \
+           expect \
+           libapache2-mod-php5 \
            wget \
            unzip \
            gettext-base \
@@ -15,9 +16,8 @@ RUN apt-get update && apt-get upgrade -y \
       && rm -rf /var/lib/apt/lists/* \
       && rm -rf /tmp/*
 
-# RUN pear install HTTP_Request2
-RUN pear install HTTP_Client
-RUN cat /usr/share/php/HTTP/Client.php | sed -e "s/=&/=/g" > /usr/share/php/HTTP/Client.php
+ADD install-pear.sh /
+RUN /install-pear.sh && pear install HTTP_Client && rm /install-pear.sh
 
 RUN wget https://github.com/dagmoller/monast/archive/master.zip \
         && unzip master.zip \
