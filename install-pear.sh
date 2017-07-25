@@ -1,6 +1,6 @@
 #!/usr/bin/expect
-spawn wget -O /tmp/go-pear.phar http://pear.php.net/go-pear.phar
-expect eof
+
+set timeout -1
 
 spawn php /tmp/go-pear.phar
 

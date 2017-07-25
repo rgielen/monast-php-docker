@@ -17,7 +17,7 @@ RUN apt-get update && apt-get upgrade -y \
       && rm -rf /tmp/*
 
 ADD install-pear.sh /
-RUN /install-pear.sh && pear install HTTP_Client && rm /install-pear.sh
+RUN wget -O /tmp/go-pear.phar http://pear.php.net/go-pear.phar && /install-pear.sh && pear install HTTP_Client && rm /install-pear.sh
 
 RUN wget https://github.com/dagmoller/monast/archive/master.zip \
         && unzip master.zip \
