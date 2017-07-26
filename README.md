@@ -41,7 +41,6 @@ services:
     - "8080:80"
   environment:
     - PYMON_HOST=monast-pymon
-    - 
   networks:
     - monast-backend
 ```
